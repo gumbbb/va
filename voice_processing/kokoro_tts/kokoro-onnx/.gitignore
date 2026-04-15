@@ -1,0 +1,27 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# General
+*.pt
+*.onnx
+.DS_Store
+*.wav
+*.json
+!.vscode/*.json
+!src/kokoro_onnx/config.json
+espeak-ng-data/
+*.tar.gz
+*.dylib
+*.so
+*.dll
+*.m4a
+*.npz
+*.bin
+
+# Virtual environments
+.venv

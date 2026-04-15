@@ -1,0 +1,430 @@
+{
+  "platform": "Orin",
+  "timestamp": "2026-04-13 13:50:08",
+  "total_queries": 40,
+  "correct_queries": 32,
+  "accuracy": 80.0,
+  "avg_latency_ms": 4453.98,
+  "details": [
+    {
+      "query": "Open the trunk of the car",
+      "expected": "car_control",
+      "selected": [
+        "car_control",
+        "car_manual"
+      ],
+      "is_correct": true,
+      "final_answer": "I couldn’t open the trunk. Try again or check if it’s locked.",
+      "latency_ms": 3239.79
+    },
+    {
+      "query": "Turn on the headlights",
+      "expected": "car_control",
+      "selected": [
+        "car_control"
+      ],
+      "is_correct": true,
+      "final_answer": "Headlights are on.",
+      "latency_ms": 640.82
+    },
+    {
+      "query": "Unlock all the doors",
+      "expected": "car_control",
+      "selected": [
+        "car_control"
+      ],
+      "is_correct": true,
+      "final_answer": "I couldn’t unlock the doors right now. Tell me what you want to lock.",
+      "latency_ms": 841.22
+    },
+    {
+      "query": "Close the driver side window",
+      "expected": "car_control",
+      "selected": [
+        "car_control"
+      ],
+      "is_correct": true,
+      "final_answer": "I couldn’t close the driver side window right now.",
+      "latency_ms": 699.43
+    },
+    {
+      "query": "Blink the hazard lights",
+      "expected": "car_control",
+      "selected": [
+        "car_control"
+      ],
+      "is_correct": true,
+      "final_answer": "I couldn’t blink the hazard lights from here.",
+      "latency_ms": 704.67
+    },
+    {
+      "query": "Navigate to the nearest gas station",
+      "expected": "navigation",
+      "selected": [
+        "navigation"
+      ],
+      "is_correct": true,
+      "final_answer": "I found the nearest gas station and set directions for you.",
+      "latency_ms": 8344.86
+    },
+    {
+      "query": "How far is it to Stuttgart?",
+      "expected": "navigation",
+      "selected": [
+        "cloud",
+        "car_manual",
+        "navigation"
+      ],
+      "is_correct": true,
+      "final_answer": "To Stuttgart: it’s about 2,848 miles (4,583 km) south of the North Pole.",
+      "latency_ms": 17121.22
+    },
+    {
+      "query": "Find a coffee shop near my location",
+      "expected": "navigation",
+      "selected": [
+        "user_preference",
+        "navigation"
+      ],
+      "is_correct": true,
+      "final_answer": "I couldn’t find a coffee shop near you right now. Do you want me to search again or try a different area?",
+      "latency_ms": 14648.84
+    },
+    {
+      "query": "Show me the route to Berlin",
+      "expected": "navigation",
+      "selected": [
+        "navigation"
+      ],
+      "is_correct": true,
+      "final_answer": "I couldn’t find a restaurant near you right now. Want me to find one instead?",
+      "latency_ms": 14008.28
+    },
+    {
+      "query": "Tell me the traffic situation on highway A3",
+      "expected": "navigation",
+      "selected": [
+        "navigation"
+      ],
+      "is_correct": true,
+      "final_answer": "I couldn’t find a restaurant near you, but I can still guide you to a nearby one.",
+      "latency_ms": 13116.93
+    },
+    {
+      "query": "Play some rock music",
+      "expected": "infotainment",
+      "selected": [
+        "infotainment"
+      ],
+      "is_correct": true,
+      "final_answer": "Rock music is playing now.",
+      "latency_ms": 1828.42
+    },
+    {
+      "query": "Search for funny cat videos on YouTube",
+      "expected": "infotainment",
+      "selected": [
+        "infotainment"
+      ],
+      "is_correct": true,
+      "final_answer": "I can’t find a funny cat video right now. Try saying “play joke” or “play music” instead.",
+      "latency_ms": 934.07
+    },
+    {
+      "query": "Pause the current song",
+      "expected": "infotainment",
+      "selected": [
+        "infotainment",
+        "user_preference"
+      ],
+      "is_correct": true,
+      "final_answer": "I paused the audio.",
+      "latency_ms": 1621.21
+    },
+    {
+      "query": "Skip to the next track",
+      "expected": "infotainment",
+      "selected": [
+        "reminder",
+        "infotainment"
+      ],
+      "is_correct": true,
+      "final_answer": "I can’t skip tracks right now. Tell me what you want to play—like a joke or a track name.",
+      "latency_ms": 1752.91
+    },
+    {
+      "query": "Lower the volume of the speakers",
+      "expected": "infotainment",
+      "selected": [
+        "reminder",
+        "car_control",
+        "user_preference"
+      ],
+      "is_correct": false,
+      "final_answer": "I couldn’t lower the volume right now. Tell me what you want: volume up or volume down.",
+      "latency_ms": 1445.37
+    },
+    {
+      "query": "What is the weather in Munich today?",
+      "expected": "cloud",
+      "selected": [
+        "smart_home",
+        "cloud"
+      ],
+      "is_correct": true,
+      "final_answer": "In Munich today, it’s around 13°C with about 5 hours of sunshine. Rain is expected for about 3 to 8 days.",
+      "latency_ms": 5539.46
+    },
+    {
+      "query": "Who is the current CEO of Tesla?",
+      "expected": "cloud",
+      "selected": [
+        "cloud"
+      ],
+      "is_correct": true,
+      "final_answer": "The CEO of Tesla is Elon Musk.",
+      "latency_ms": 5573.37
+    },
+    {
+      "query": "Tell me the latest news about Mercedes-Benz",
+      "expected": "cloud",
+      "selected": [
+        "car_manual",
+        "cloud"
+      ],
+      "is_correct": true,
+      "final_answer": "According to the latest news, Mercedes-Benz is replacing the four-cylinder SL with a straight-six engine, and they’re also boosting the CLA-Class EV sales.",
+      "latency_ms": 13848.41
+    },
+    {
+      "query": "What is the population of Tokyo?",
+      "expected": "cloud",
+      "selected": [
+        "cloud"
+      ],
+      "is_correct": true,
+      "final_answer": "Tokyo’s population is around 14 million in the central area and over 37 million in the metropolitan region. The Tokyo Metropolitan Area has about 41 million.",
+      "latency_ms": 6399.88
+    },
+    {
+      "query": "Search the web for the history of autonomous driving",
+      "expected": "cloud",
+      "selected": [
+        "cloud"
+      ],
+      "is_correct": true,
+      "final_answer": "Here’s a quick summary: the history of autonomous driving started in 2009 with Waymo and continues with the focus on safe environments for self-driving cars.",
+      "latency_ms": 4498.96
+    },
+    {
+      "query": "How do I check the tire pressure?",
+      "expected": "car_manual",
+      "selected": [
+        "car_manual"
+      ],
+      "is_correct": true,
+      "final_answer": "Look at the tire pressure on the driver’s door placard for the recommended PSI.",
+      "latency_ms": 764.4
+    },
+    {
+      "query": "Where is the fuse box located?",
+      "expected": "car_manual",
+      "selected": [
+        "car_manual"
+      ],
+      "is_correct": true,
+      "final_answer": "The fuse box is typically under the hood, close to the driver’s seat area.",
+      "latency_ms": 822.83
+    },
+    {
+      "query": "What does the yellow engine light mean?",
+      "expected": "car_manual",
+      "selected": [
+        "car_manual"
+      ],
+      "is_correct": true,
+      "final_answer": "It means there’s an engine problem, so you should have it diagnosed by a dealer.",
+      "latency_ms": 776.21
+    },
+    {
+      "query": "Explain how to use the cruise control",
+      "expected": "car_manual",
+      "selected": [
+        "navigation",
+        "car_manual",
+        "cloud"
+      ],
+      "is_correct": true,
+      "final_answer": "Cruise control maintains a set speed and distance from the vehicle ahead.",
+      "latency_ms": 14041.19
+    },
+    {
+      "query": "How many liters is the fuel tank?",
+      "expected": "car_manual",
+      "selected": [
+        "car_manual"
+      ],
+      "is_correct": true,
+      "final_answer": "Your fuel tank holds about 12.4 gallons for FWD and 13.2 for AWD.",
+      "latency_ms": 917.16
+    },
+    {
+      "query": "Remind me to buy milk at 6 PM",
+      "expected": "reminder",
+      "selected": [
+        "smart_home"
+      ],
+      "is_correct": false,
+      "final_answer": "I’m setting up the reminder for you.",
+      "latency_ms": 2842.34
+    },
+    {
+      "query": "Set a timer for 10 minutes",
+      "expected": "reminder",
+      "selected": [
+        "reminder"
+      ],
+      "is_correct": true,
+      "final_answer": "I set a 10-minute timer for you.",
+      "latency_ms": 586.42
+    },
+    {
+      "query": "Add a meeting with John to my schedule tomorrow",
+      "expected": "reminder",
+      "selected": [
+        "reminder"
+      ],
+      "is_correct": true,
+      "final_answer": "I can add a meeting with John to your schedule tomorrow.",
+      "latency_ms": 3188.57
+    },
+    {
+      "query": "What are my reminders for today?",
+      "expected": "reminder",
+      "selected": [
+        "reminder",
+        "smart_home"
+      ],
+      "is_correct": true,
+      "final_answer": "I’m fetching your reminders now.",
+      "latency_ms": 2242.8
+    },
+    {
+      "query": "Alert me when I reach the office",
+      "expected": "reminder",
+      "selected": [
+        "reminder",
+        "smart_home",
+        "user_preference"
+      ],
+      "is_correct": true,
+      "final_answer": "I’m setting up a reminder to alert you when you’re near the office.",
+      "latency_ms": 2062.59
+    },
+    {
+      "query": "Turn on the living room lights",
+      "expected": "smart_home",
+      "selected": [
+        "smart_home",
+        "car_control"
+      ],
+      "is_correct": true,
+      "final_answer": "I couldn’t turn on the living room lights right now.",
+      "latency_ms": 1718.04
+    },
+    {
+      "query": "Set the kitchen temperature to 22 degrees",
+      "expected": "smart_home",
+      "selected": [
+        "reminder"
+      ],
+      "is_correct": false,
+      "final_answer": "I can’t set the temperature from here. But if you tell me what the temperature should be, I can adjust the setting.",
+      "latency_ms": 1279.45
+    },
+    {
+      "query": "Lock the front door of my house",
+      "expected": "smart_home",
+      "selected": [
+        "smart_home",
+        "car_control"
+      ],
+      "is_correct": true,
+      "final_answer": "I couldn’t lock the front door right now. Try again or check if the door is blocked.",
+      "latency_ms": 2408.64
+    },
+    {
+      "query": "Is the garage door closed?",
+      "expected": "smart_home",
+      "selected": [
+        "car_control"
+      ],
+      "is_correct": false,
+      "final_answer": "I can’t check the garage door status right now.",
+      "latency_ms": 685.19
+    },
+    {
+      "query": "Switch off the air conditioner in the bedroom",
+      "expected": "smart_home",
+      "selected": [
+        "car_control"
+      ],
+      "is_correct": false,
+      "final_answer": "I couldn’t turn off the air conditioner from here.",
+      "latency_ms": 705.99
+    },
+    {
+      "query": "Save my work address as 123 Main Street",
+      "expected": "user_preference",
+      "selected": [
+        "user_preference",
+        "navigation"
+      ],
+      "is_correct": true,
+      "final_answer": "I’m saving your work address as 123 Main Street.",
+      "latency_ms": 11990.32
+    },
+    {
+      "query": "I prefer listening to jazz music while driving",
+      "expected": "user_preference",
+      "selected": [
+        "infotainment"
+      ],
+      "is_correct": false,
+      "final_answer": "Okay, I started playing jazz music for you.",
+      "latency_ms": 1648.15
+    },
+    {
+      "query": "Set my default cabin temperature to 21 degrees",
+      "expected": "user_preference",
+      "selected": [
+        "reminder"
+      ],
+      "is_correct": false,
+      "final_answer": "I can’t set the default cabin temperature from here.",
+      "latency_ms": 992.93
+    },
+    {
+      "query": "Remember that I like to avoid tolls",
+      "expected": "user_preference",
+      "selected": [
+        "reminder",
+        "user_preference",
+        "navigation"
+      ],
+      "is_correct": true,
+      "final_answer": "I can help you find nearby options that avoid tolls if you tell me which area you’re in.",
+      "latency_ms": 9733.95
+    },
+    {
+      "query": "What is my saved home address?",
+      "expected": "user_preference",
+      "selected": [
+        "smart_home"
+      ],
+      "is_correct": false,
+      "final_answer": "I can’t find saved home addresses from the current system setup. Want me to check your home settings instead?",
+      "latency_ms": 1943.84
+    }
+  ]
+}

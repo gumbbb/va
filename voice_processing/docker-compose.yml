@@ -1,0 +1,33 @@
+# Build first: docker compose build
+# Default: main.py (mic). From WAV: docker compose run voice_processing python3 /app/jetson_test/main_file.py
+# ORCHESTRATOR_URL: default http://localhost:8000 works when orchestrator runs on same host (network_mode: host).
+#   If orchestrator is on another machine, set ORCHESTRATOR_URL=http://<that-host-ip>:8000. TTS output is not written to file.
+services:
+  voice_processing:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: voice_processing:latest
+    container_name: voice_processing
+    environment:
+      - CUDA_VISIBLE_DEVICES=0
+      - MIC_DEVICE_NAME=
+      - PULSE_SERVER=unix:${XDG_RUNTIME_DIR}/pulse/native
+      - ORCHESTRATOR_URL=${ORCHESTRATOR_URL:-http://localhost:8000}
+      - TTS_CHUNK_COUNT=${TTS_CHUNK_COUNT:-5}
+    volumes:
+      - ./output:/app/output
+      - ./input_test:/app/input_test
+      - ./:/app
+      - ${XDG_RUNTIME_DIR}/pulse:${XDG_RUNTIME_DIR}/pulse
+      - ${HOME}/.config/pulse/cookie:/root/.config/pulse/cookie
+      - /usr/lib/aarch64-linux-gnu/tegra:/usr/lib/aarch64-linux-gnu/tegra:ro
+      - /usr/lib/aarch64-linux-gnu/nvidia:/usr/lib/aarch64-linux-gnu/nvidia:ro
+    devices:
+      - /dev/snd:/dev/snd
+    group_add:
+      - audio
+    network_mode: host
+    privileged: true
+    stdin_open: true
+    tty: true

@@ -1,0 +1,106 @@
+# FPT AUTOMOTIVE - FA.AI INTERNAL SOURCE CODE LICENSE  
+**Version 1.0**
+
+## 1. Ownership
+This source code and all associated materials (the “Software”) are the exclusive property of **FPT Automotive**, managed and owned by the **AI Department (FA.AI)**.
+
+All intellectual property rights, including but not limited to copyright, patent rights, and trade secrets, belong to **FA.AI**, unless explicitly stated otherwise in writing.
+
+---
+
+## 2. Eligibility and Access
+Access to the Software is strictly limited to:
+- Current employees of **FPT Automotive**
+- Authorized contractors or partners explicitly approved in writing by **FA.AI**
+
+Unauthorized access, copying, distribution, or disclosure is strictly prohibited.
+
+---
+
+## 3. License Grant
+FA.AI hereby grants eligible users a **non-exclusive, non-transferable, internal-use license** to:
+- Use the Software
+- Modify the Software
+- Create derivative works
+
+**Commercial use is permitted**, provided that ownership of the Software and all derivatives remains with **FA.AI**.
+
+---
+
+## 4. Copyleft Requirement (Same-License Rule)
+Any modification, derivative work, or extension of the Software must:
+- Remain licensed under this **same FA.AI Internal Source Code License**
+- Retain all original copyright notices
+- Clearly document changes and authorship
+
+Relicensing under any other license is not permitted.
+
+---
+
+## 5. Contribution and Rights Assignment
+By contributing code, documentation, models, or other materials to the Software, the contributor:
+- Agrees to **irrevocably transfer all intellectual property rights** related to the contribution to **FA.AI**
+- Waives any moral rights to the extent permitted by law
+- Confirms that the contribution does not infringe third-party rights
+
+FA.AI may use, modify, sublicense, or commercialize contributed materials without further approval or compensation.
+
+---
+
+## 6. External Use and IP Protection
+The Software and any derivative works:
+- **Must NOT be delivered or transferred in source code form** to any external customer or third party
+- **Must NOT grant ownership, joint ownership, or IP rights** to any external party
+
+The following uses are **explicitly permitted**, provided no IP ownership is transferred:
+- Hosting the Software as part of a **Software-as-a-Service (SaaS)** or managed service
+- Deploying compiled binaries or containers on customer infrastructure
+- Using the Software to generate outputs, results, or services delivered to customers
+
+Any exception involving source code disclosure or IP transfer requires **explicit prior written approval** from **FA.AI** and FPT Automotive management.
+
+---
+
+## 7. Commercial Use, Demo, and Billed Projects
+When the Software or any derivative is used for:
+- Internal or external demonstrations
+- Customer-facing proof-of-concepts (PoC)
+- Revenue-generating or billed projects
+
+The responsible department agrees that:
+1. **FA.AI must be informed** of such usage in a timely manner  
+2. All relevant technical, usage, and business information must be shared with **FA.AI**  
+3. **100% of the generated revenue shall be counted as influence revenue attributable to FA.AI**, for internal accounting, performance measurement, and strategic reporting purposes
+
+This clause does not override existing financial or budgeting procedures unless explicitly approved by FPT management.
+
+---
+
+## 8. Confidentiality
+The Software may contain confidential or proprietary information. Users must:
+- Protect the Software from unauthorized disclosure
+- Follow FPT Automotive's internal information security and data protection policies
+
+---
+
+## 9. No Warranty
+The Software is provided **“AS IS”**, without warranty of any kind, express or implied, including but not limited to:
+- Merchantability
+- Fitness for a particular purpose
+- Non-infringement
+
+---
+
+## 10. Limitation of Liability
+To the maximum extent permitted by law, FA.AI and FPT Automotive shall not be liable for any damages arising from the use or inability to use the Software.
+
+---
+
+## 11. Termination
+This license is automatically terminated if any term is violated. Upon termination, all copies of the Software must be destroyed or returned, as directed by FA.AI.
+
+---
+
+## 12. Governing Law
+This License shall be governed by and interpreted in accordance with the laws and internal regulations applicable to **FPT Automotive**.
+ 

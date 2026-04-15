@@ -1,0 +1,220 @@
+# Model cache convention: every service that loads HF models uses HF_HOME=/app/cache
+# and volume ./cache/<service>:/app/cache (orchestrator, car_manual, car_control, infotainment).
+services:
+  orchestrator:
+    build: ./orchestrator-on-edge/orchestrator
+    ports:
+      - "8000:8000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      - ORCHESTRATOR_PORT=${ORCHESTRATOR_PORT}
+      # - AGENT_URLS=${AGENT_URLS:-}
+      - OPENAI_MODEL=${OPENAI_MODEL:-}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      # - LOCAL_LLM_URL=${LOCAL_LLM_URL:-}
+      # - LOCAL_LLM_MODEL=${LOCAL_LLM_MODEL:-}
+      # - ORCHESTRATOR_ROUTING_MODEL=${ORCHESTRATOR_ROUTING_MODEL:-}
+      # - HF_HOME=/app/cache
+    depends_on:
+      - car_control
+      - car_manual
+      - navigation
+      - infotainment
+      - cloud
+    volumes:
+      - ./orchestrator-on-edge/orchestrator:/app
+      - ./orchestrator-on-edge/cache/orchestrator:/app/cache
+      - ./orchestrator-on-edge/shared/embed_models:/app/cache/embed_models
+
+
+  car_control:
+    build: ./orchestrator-on-edge/agents/car_control
+    ports:
+      - "8001:8001"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./orchestrator-on-edge/shared/car_control:/app/sounds
+      - ./orchestrator-on-edge/agents/car_control:/app
+      # - ./wheels/torch-2.8.0-cp310-cp310-linux_aarch64.whl:/app/torch-2.8.0-cp310-cp310-linux_aarch64.whl
+      - ./orchestrator-on-edge/shared/finetuned_models:/app/cache
+    environment:
+      # - HF_HOME=/app/cache
+      - CAR_SIMULATOR_CONNECTED=${CAR_SIMULATOR_CONNECTED}
+      - CAR_CONTROL_BASE_URL=${CAR_CONTROL_BASE_URL}
+      - CAR_CONTROL_SOUNDS_DIR=${CAR_CONTROL_SOUNDS_DIR}
+
+  car_manual:
+    build: ./orchestrator-on-edge/agents/car_manual
+    ports:
+      - "8002:8002"
+    environment:
+      - HF_HOME=/app/cache
+      - CAR_MANUAL_BRAND=${CAR_MANUAL_BRAND}
+      - CAR_MANUAL_BASE_URL=${CAR_MANUAL_BASE_URL}
+    volumes:
+      - ./orchestrator-on-edge/agents/car_manual:/app
+      - ./orchestrator-on-edge/cache/car_manual:/app/cache
+      - ./orchestrator-on-edge/shared/embed_models:/app/cache/embed_models
+
+  navigation:
+    build: ./orchestrator-on-edge/agents/navigation
+    ports:
+      - "8003:8003"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      - NAVIGATION_BASE_URL=${NAVIGATION_BASE_URL}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_MODEL=${OPENAI_MODEL}
+
+    volumes:
+      - ./orchestrator-on-edge/agents/navigation:/app
+
+  infotainment:
+    build: ./orchestrator-on-edge/agents/infotainment
+    ports:
+      - "8004:8004"
+
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./orchestrator-on-edge/agents/infotainment:/app
+      - ./orchestrator-on-edge/shared/infotainment:/app/media
+      - ./orchestrator-on-edge/shared/finetuned_models:/app/cache
+    environment:
+      - INFOTAINMENT_BASE_URL=${INFOTAINMENT_BASE_URL}
+      - INFOTAINMENT_MEDIA_DIR=${INFOTAINMENT_MEDIA_DIR}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_MODEL=${OPENAI_MODEL}
+
+  cloud:
+    build: ./orchestrator-on-edge/agents/cloud
+    ports:
+      - "8005:8005"
+
+    volumes:
+      - ./orchestrator-on-edge/agents/cloud:/app
+    environment:
+      - CLOUD_BASE_URL=${CLOUD_BASE_URL}
+      - TAVILY_API_KEY=${TAVILY_API_KEY}
+
+  frontend:
+    build:
+      context: ./orchestrator-on-edge/frontend/client
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./orchestrator-on-edge/frontend/client:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      # - VITE_ORCHESTRATOR_URL=http://172.20.10.2:${ORCHESTRATOR_PORT:-8000}
+      # - VITE_ORCHESTRATOR_URL=http://192.168.55.1:${ORCHESTRATOR_PORT:-8000}
+      - VITE_ORCHESTRATOR_URL=http://192.168.1.10:${ORCHESTRATOR_PORT:-8000}
+      # - VITE_ORCHESTRATOR_URL=http://172.20.10.4:${ORCHESTRATOR_PORT:-8000}
+      - PROXY_ORCHESTRATOR_URL=http://orchestrator:${ORCHESTRATOR_PORT:-8000}
+
+
+  user_preference:
+    build: ./orchestrator-on-edge/agents/user_preference
+    container_name: user_preference
+    ports:
+      - "8006:8006"
+    volumes:
+      - ./orchestrator-on-edge/agents/user_preference:/app
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+    environment:
+      - USER_PREFERENCE_URL=${USER_PREFERENCE_URL}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+
+  reminder:
+    build: ./orchestrator-on-edge/agents/reminder
+    container_name: reminder
+    ports:
+      - "8007:8007"
+    volumes:
+      - ./orchestrator-on-edge/agents/reminder:/app
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      - REMINDER_URL=${REMINDER_URL}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    
+  telegram:
+    build: ./orchestrator-on-edge/agents/telegram
+    container_name: telegram
+    ports:
+      - "8008:8008"
+    volumes:
+      - ./orchestrator-on-edge/agents/telegram:/app
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - TELEGRAM_AGENT_URL=${TELEGRAM_AGENT_URL}
+      - TELEGRAM_API_ID=${TELEGRAM_API_ID}
+      - TELEGRAM_API_HASH=${TELEGRAM_API_HASH}
+
+
+  smart_home:
+    build: ./orchestrator-on-edge/agents/smart_home
+    container_name: smart_home
+    ports:
+      - "8009:8009"
+    volumes:
+      - ./orchestrator-on-edge/agents/smart_home:/app
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      - SMART_HOME_URL=${SMART_HOME_URL}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+
+
+  mcp-api:
+    build: ./orchestrator-on-edge/mcp_client
+    container_name: mcp_api
+    volumes:
+      - ./orchestrator-on-edge/mcp_client:/app
+    ports:
+      - "8100:8100"
+    env_file:
+      - .env
+    restart: unless-stopped
+
+
+  voice_processing:
+    build: ./voice_processing
+    image: voice_processing:latest
+    container_name: voice_processing
+    runtime: nvidia
+    environment:
+      - CUDA_VISIBLE_DEVICES=0
+      - MIC_DEVICE_NAME=
+      - PULSE_SERVER=unix:${XDG_RUNTIME_DIR}/pulse/native
+      - ORCHESTRATOR_URL=${ORCHESTRATOR_URL:-http://localhost:8000}
+      - TTS_CHUNK_COUNT=${TTS_CHUNK_COUNT:-5}
+    volumes:
+      - ./voice_processing/output:/app/output
+      - ./voice_processing/input_test:/app/input_test
+      - ./voice_processing:/app
+      - ./cache/voice_processing:/app/cache
+      - ${XDG_RUNTIME_DIR}/pulse:${XDG_RUNTIME_DIR}/pulse
+      - ${HOME}/.config/pulse/cookie:/root/.config/pulse/cookie
+      - /usr/lib/aarch64-linux-gnu/tegra:/usr/lib/aarch64-linux-gnu/tegra:ro
+      - /usr/lib/aarch64-linux-gnu/nvidia:/usr/lib/aarch64-linux-gnu/nvidia:ro
+    devices:
+      - /dev/snd:/dev/snd
+    group_add:
+      - audio
+    network_mode: host
+    privileged: true
+    stdin_open: true
+    tty: true
+    depends_on:
+      - orchestrator
